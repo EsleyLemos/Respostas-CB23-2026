@@ -56,12 +56,15 @@ python` não apontar para o ambiente, ele não está ativo. Quem preferir pode u
 (`conda create -n prog2-conda python numpy` e `conda activate prog2-conda`); nesse caso,
 indique no `RELATORIO.md`.
 
-### 1.2 Sua branch
+### 1.2 Fork e branch
+
+Você não tem permissão para escrever no repositório da disciplina: trabalhe em um fork. No
+GitHub, abra https://github.com/IMPATECH-EDU/Respostas-CB23-2026 e clique em **Fork**. Depois:
 
 ```bash
-git clone https://github.com/IMPATECH-EDU/Respostas-CB23-2026.git   # se ainda não tiver
+git clone https://github.com/<seu_usuario>/Respostas-CB23-2026.git
 cd Respostas-CB23-2026
-git switch main && git pull
+git remote add upstream https://github.com/IMPATECH-EDU/Respostas-CB23-2026.git
 git switch -c projeto_<sua_matricula>
 ```
 
@@ -78,9 +81,10 @@ python -m unittest discover -v         # roda os testes de aceitação e os seus
 ```
 
 A maior parte dos testes de aceitação deve **falhar** com `NotImplementedError`: é o código
-que você ainda vai escrever. Depois do seu primeiro commit, envie a branch
-(`git push -u origin projeto_<sua_matricula>`) e abra o Pull Request para a `main` como
-rascunho (*Draft*), com o título `projeto_<sua_matricula>`.
+que você ainda vai escrever. Depois do seu primeiro commit, envie a branch para o seu fork
+(`git push -u origin projeto_<sua_matricula>`) e abra o Pull Request como rascunho (*Draft*),
+com o título `projeto_<sua_matricula>`: base `IMPATECH-EDU/Respostas-CB23-2026`, branch
+`main`; head `<seu_usuario>/Respostas-CB23-2026`, branch `projeto_<sua_matricula>`.
 
 ## 2. A base de código
 
@@ -241,8 +245,8 @@ comentários. O script usa apenas a interface pública dos módulos.
   por minuto; (d) tipos de cinco expressões com a `SerieTemporal`.
 
 **Previsões antes de medir.** Antes de implementar as Etapas 3 e 4, preencha no `RELATORIO.md` as
-colunas de previsão das tabelas R5 e R6 e faça um commit só com elas
-(`Marco 1: previsões das Etapas 3 e 4`). O histórico de commits mostra a ordem. Previsões
+colunas de previsão das tabelas R5 e R6 e faça um commit só com elas. O histórico de
+commits mostra a ordem. Previsões
 erradas não perdem pontos; o que se avalia é a explicação da diferença.
 
 ## 6. Testes
@@ -287,8 +291,7 @@ execução, em até 6 linhas por pergunta, além das tabelas.
 
 ## 8. Entrega
 
-**Commits.** As mensagens começam com `Marco 1:` e citam a issue, por exemplo
-`Marco 1: teste de regressão da média móvel (#4)`. Uma sequência possível:
+**Commits.** Faça commits pequenos, uma ideia por commit. Uma sequência possível:
 previsões, #1, #2, #3, teste de regressão da #4, correção da #4, #5, relatório. Fazer o teste
 de regressão e a correção em commits separados é o que se espera numa equipe real.
 
@@ -311,8 +314,8 @@ Resolve as issues #1 a #5 do enunciado.
 
 **Checklist do Marco 1**
 
-- [ ] `git diff main --stat -- fornecido/` não mostra nada (nenhum arquivo de `fornecido/`
-      foi alterado).
+- [ ] `git fetch upstream` seguido de `git diff upstream/main --stat -- fornecido/` não mostra
+      nada (nenhum arquivo de `fornecido/` foi alterado).
 - [ ] `python -m unittest discover -v` roda sem falhas, com todos os testes de aceitação e
       pelo menos 8 testes seus.
 - [ ] `python marco1.py` roda sem exceções, com a sua matrícula, e todos os `assert` passam.

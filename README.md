@@ -9,18 +9,34 @@ na sua própria branch e entrega o trabalho em um Pull Request contra a `main`.
 
 ## Como trabalhar
 
+Você não tem permissão para escrever neste repositório. Trabalhe em um **fork** (a sua cópia)
+e envie o Pull Request do fork para cá.
+
 ```bash
-git clone https://github.com/IMPATECH-EDU/Respostas-CB23-2026.git
+# 1. No GitHub, clique em "Fork" nesta página para criar a sua cópia.
+# 2. Clone o SEU fork, ligue-o a este repositório e crie a sua branch:
+git clone https://github.com/<seu_usuario>/Respostas-CB23-2026.git
 cd Respostas-CB23-2026
-git switch -c projeto_<sua_matricula>       # a sua branch; nunca faça commit na main
+git remote add upstream https://github.com/IMPATECH-EDU/Respostas-CB23-2026.git
+git switch -c projeto_<sua_matricula>       # nunca faça commit na main
 # ... trabalho, testes, commits ...
-git push -u origin projeto_<sua_matricula>
+git push -u origin projeto_<sua_matricula>  # envia para o seu fork
 ```
 
-Abra **um único Pull Request** da branch `projeto_<sua_matricula>` para a `main`, com o
-título `projeto_<sua_matricula>`, usando a conta do GitHub associada ao seu e-mail
-@impatech.edu.br. Abra-o como rascunho (*Draft*) logo no primeiro marco e acrescente commits
-a cada marco. O PR **não será integrado** à `main`: ele é a sua entrega e o lugar da revisão.
+Abra **um único Pull Request** com base `IMPATECH-EDU/Respostas-CB23-2026`, branch `main`, e
+head `<seu_usuario>/Respostas-CB23-2026`, branch `projeto_<sua_matricula>`. Use o título
+`projeto_<sua_matricula>` e a conta do GitHub associada ao seu e-mail @impatech.edu.br. Abra-o
+como rascunho (*Draft*) logo no primeiro marco; os pushes seguintes para a mesma branch do seu
+fork atualizam o PR sozinhos. O PR **não será integrado** à `main`: ele é a sua entrega e o
+lugar da revisão. Não apague o fork nem a branch até o fim da disciplina.
+
+**Marco novo publicado?** Traga-o para a sua branch e envie para o seu fork:
+
+```bash
+git switch projeto_<sua_matricula>
+git pull --no-rebase --no-edit upstream main
+git push
+```
 
 ## A base de código
 
@@ -59,7 +75,7 @@ python -m unittest discover -v
 
 **Commits e Pull Request**
 
-- Commits pequenos, uma ideia por commit, com mensagem `Marco N: <o que mudou> (#issue)`.
+- Commits pequenos, uma ideia por commit.
 - Nunca inclua ambientes virtuais nem `__pycache__` (o `.gitignore` já cuida disso).
 - A descrição do PR diz o que mudou, como foi testado e o que o revisor deve olhar com
   atenção (modelo no enunciado de cada marco).
